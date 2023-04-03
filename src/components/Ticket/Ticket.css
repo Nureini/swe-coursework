@@ -1,0 +1,53 @@
+.ticket {
+  display: flex;
+  flex-direction: column;
+  background-color: #e9e3d8;
+  padding: 20px;
+  gap: 5px;
+}
+
+.ticketType {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.ticket__h3--span {
+  color: green;
+}
+
+.ticket__userID {
+  font-weight: bold;
+  color: blue;
+}
+
+.ticket__department--span {
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.ticket__status {
+  font-weight: bold;
+}
+
+.incomplete {
+  color: red;
+}
+
+.complete {
+  color: green;
+}
+
+.ticket__btnContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.ticket__btn {
+  background-color: #0d3273;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+}

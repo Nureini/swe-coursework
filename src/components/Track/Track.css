@@ -1,0 +1,30 @@
+.track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.track > a {
+  color: blue;
+  font-size: 24px;
+}
+
+.track > h1 {
+  margin-top: 5px;
+  font-size: 40px;
+}
+
+.track__container {
+  margin-top: 10px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .track__container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

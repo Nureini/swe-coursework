@@ -1,0 +1,21 @@
+.footer {
+  height: 70px;
+  background-color: #0d3273;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer__img {
+  height: 50px;
+}
+
+.footer > p {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}

@@ -1,0 +1,49 @@
+.home {
+  padding: 5px;
+}
+
+.home__containerOne {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.home__containerOne--welcome > span {
+  color: green;
+}
+
+.home__containerOne--logout {
+  color: red;
+  cursor: pointer;
+}
+
+.home__containerTwo {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.home__containerTwo > button {
+  background-color: #0d3273;
+  color: white;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.faq__container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-transform: capitalize;
+}
+
+.faq {
+  background-color: #e9e3d8;
+  padding: 10px;
+  border-radius: 10px;
+}
