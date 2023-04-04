@@ -21,3 +21,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.displayError {
+  color: red;
+  text-transform: uppercase;
+}

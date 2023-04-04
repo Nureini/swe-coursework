@@ -1,5 +1,5 @@
 import "./Signin.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -9,6 +9,11 @@ const Signin = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [email, password]);
 
   // handles input changes
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -23,12 +28,13 @@ const Signin = () => {
         console.log(auth);
         navigate("/");
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => setErrMsg("Invalid Username or Password"));
   };
 
   return (
     <div className="signin">
       <form className="signin__form" onSubmit={handleFormSubmit}>
+        <h3 className="displayError">{errMsg}</h3>
         <h1>Welcome</h1>
 
         <div>

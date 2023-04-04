@@ -2,7 +2,7 @@ import "./Form.css";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import Confirmation from "../Confirmation/Confirmation";
 
@@ -12,35 +12,45 @@ const Form = ({ ecPage, issuePage, user }) => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const [errMsg, setErrMsg] = useState("");
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [department, description]);
+
   // handles input changes
   const handleDepartmentChange = (e) => setDepartment(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);
 
   // handles when button is clicked store information of ticket in database
   const handleSubmit = async () => {
-    setLoading(true);
+    if (department && description) {
+      setLoading(true);
 
-    // depending on type of ticket being submitted, whether its ec or an issue ticket, data will be stored in the database according to the type of ticket created.
-    if (ecPage) {
-      const ref = doc(db, `users/${user?.uid}/ec's/${nanoid()}`);
-      await setDoc(ref, {
-        department: department,
-        description: description,
-        dateCreated: new Date(),
-        completed: false,
-      });
-    } else if (issuePage) {
-      const ref = doc(db, "users", user?.uid, "issues", nanoid());
-      await setDoc(ref, {
-        department: department,
-        description: description,
-        dateCreated: new Date(),
-        completed: false,
-      });
+      // depending on type of ticket being submitted, whether its ec or an issue ticket, data will be stored in the database according to the type of ticket created.
+      if (ecPage) {
+        const ref = doc(db, `users/${user?.uid}/ec's/${nanoid()}`);
+        await setDoc(ref, {
+          department: department,
+          description: description,
+          dateCreated: new Date(),
+          completed: false,
+        });
+      } else if (issuePage) {
+        const ref = doc(db, "users", user?.uid, "issues", nanoid());
+        await setDoc(ref, {
+          department: department,
+          description: description,
+          dateCreated: new Date(),
+          completed: false,
+        });
+      }
+
+      setLoading(false);
+      setSubmitted(true);
+    } else {
+      setErrMsg("You must complete the form before submitting");
     }
-
-    setLoading(false);
-    setSubmitted(true);
   };
 
   if (loading) return <p>Submitting Form...</p>;
@@ -53,6 +63,8 @@ const Form = ({ ecPage, issuePage, user }) => {
 
       {ecPage && <h1>Submit an EC</h1>}
       {issuePage && <h1>Report Issue</h1>}
+
+      <h3 className="displayError">{errMsg}</h3>
 
       <div className="form__select">
         <select
